@@ -2,7 +2,7 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AddressService } from './address.service';
-import { Address } from './schemas/address.schema';
+import { Address } from '@database/schemas/address.schema';
 import { CreateAddressDto } from './dto/create-address.dto';
 
 @ApiTags('addresses')

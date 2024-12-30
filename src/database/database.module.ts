@@ -2,7 +2,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import envConfig from 'src/config/env.config';
-import { CountryModule } from 'src/modules/country/country.module';
+import { CountryModule } from '@modules/country/country.module';
 
 @Module({
   imports: [

@@ -1,9 +1,9 @@
 // src/seed/seed.service.ts
 import { faker } from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
-import { AddressService } from 'src/modules/address/address.service';
-import { CountryService } from 'src/modules/country/country.service';
-import { Country } from 'src/modules/country/schemas/country.schema';
+import { AddressService } from '@modules/address/address.service';
+import { CountryService } from '@modules/country/country.service';
+import { Country } from '@database/schemas/country.schema';
 
 @Injectable()
 export class SeedService {

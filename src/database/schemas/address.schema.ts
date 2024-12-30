@@ -1,7 +1,7 @@
 // src/modules/address/schemas/address.schema.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { Country } from 'src/modules/country/schemas/country.schema';
+import { Country } from 'src/database/schemas/country.schema';
 
 @Schema({ timestamps: true })
 export class Address extends Document {
