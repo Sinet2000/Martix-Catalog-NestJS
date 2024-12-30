@@ -17,10 +17,12 @@ async function bootstrap() {
 
   // Swagger configuration
   const config = new DocumentBuilder()
-    .setTitle('My Enterprise API')
-    .setDescription('API documentation for the Node.js enterprise application')
+    .setTitle('NestJS API')
+    .setDescription('API documentation for the application')
     .setVersion('1.0')
+    .addTag('addresses')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 

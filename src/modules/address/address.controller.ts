@@ -1,6 +1,6 @@
 // src/modules/address/address.controller.ts
 import { Controller, Post, Body, Get, Param, Put } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddressService } from './address.service';
 import { Address } from '@app/modules/address/schemas/address.schema';
 import { CreateAddressDto } from './dto/create-address.dto';
@@ -12,6 +12,12 @@ export class AddressController {
   constructor(private readonly addressService: AddressService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create a new address' })
+  @ApiResponse({
+    status: 201,
+    description: 'The address has been successfully created.',
+  })
+  @ApiResponse({ status: 400, description: 'Validation error.' })
   async createAddressDto(
     @Body() createAddressDto: CreateAddressDto,
   ): Promise<Address> {
@@ -47,6 +53,10 @@ export class AddressController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get an address by ID' })
+  @ApiParam({ name: 'id', description: 'The ID of the address' })
+  @ApiResponse({ status: 200, description: 'Return the address.' })
+  @ApiResponse({ status: 404, description: 'Address not found.' })
   async getById(@Param('id') id: string): Promise<Address> {
     return this.addressService.getById(id);
   }
@@ -62,12 +72,14 @@ export class AddressController {
     return this.addressService.getAllByCountry(countryId);
   }
 
-  /**
-   * Update an address by ID
-   * @param id Address ID
-   * @param updateAddressDto Data to update the address
-   */
   @Put(':id')
+  @ApiOperation({ summary: 'Update an address by ID' })
+  @ApiParam({ name: 'id', description: 'The ID of the address' })
+  @ApiResponse({
+    status: 200,
+    description: 'The address has been successfully updated.',
+  })
+  @ApiResponse({ status: 404, description: 'Address not found.' })
   async updateAddress(
     @Param('id') id: string,
     @Body() updateAddressDto: UpdateAddressDto,
