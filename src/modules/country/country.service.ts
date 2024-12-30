@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Country } from '@database/schemas/country.schema';
+import { Country } from '@app/modules/country/schemas/country.schema';
 
 @Injectable()
 export class CountryService {

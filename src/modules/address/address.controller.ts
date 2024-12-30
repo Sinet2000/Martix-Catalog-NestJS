@@ -1,9 +1,10 @@
 // src/modules/address/address.controller.ts
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AddressService } from './address.service';
-import { Address } from '@database/schemas/address.schema';
+import { Address } from '@app/modules/address/schemas/address.schema';
 import { CreateAddressDto } from './dto/create-address.dto';
+import { UpdateAddressDto } from './dto/update-address.dto';
 
 @ApiTags('addresses')
 @Controller('addresses')
@@ -41,7 +42,36 @@ export class AddressController {
   }
 
   @Get()
-  async getAllAddresses() {
+  async findAll(): Promise<Address[]> {
     return this.addressService.findAll();
+  }
+
+  @Get(':id')
+  async getById(@Param('id') id: string): Promise<Address> {
+    return this.addressService.getById(id);
+  }
+
+  /**
+   * Get all addresses by country
+   * @param countryId Country ID
+   */
+  @Get('country/:countryId')
+  async getAllByCountry(
+    @Param('countryId') countryId: string,
+  ): Promise<Address[]> {
+    return this.addressService.getAllByCountry(countryId);
+  }
+
+  /**
+   * Update an address by ID
+   * @param id Address ID
+   * @param updateAddressDto Data to update the address
+   */
+  @Put(':id')
+  async updateAddress(
+    @Param('id') id: string,
+    @Body() updateAddressDto: UpdateAddressDto,
+  ): Promise<Address> {
+    return this.addressService.update(id, updateAddressDto);
   }
 }

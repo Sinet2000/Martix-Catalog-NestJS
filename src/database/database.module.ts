@@ -2,7 +2,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import envConfig from 'src/config/env.config';
-import { CountryModule } from '@modules/country/country.module';
 
 @Module({
   imports: [
@@ -13,7 +12,6 @@ import { CountryModule } from '@modules/country/country.module';
         useUnifiedTopology: true,
       }),
     }),
-    CountryModule,
   ],
   exports: [],
 })

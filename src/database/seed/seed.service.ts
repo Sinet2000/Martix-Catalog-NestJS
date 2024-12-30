@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
 import { AddressService } from '@modules/address/address.service';
 import { CountryService } from '@modules/country/country.service';
-import { Country } from '@database/schemas/country.schema';
+import { Country } from '@app/modules/country/schemas/country.schema';
 
 @Injectable()
 export class SeedService {
