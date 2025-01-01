@@ -316,3 +316,206 @@ Below is a curated list of **must-have** packages (grouped by functionality) for
     "supertest": "^6.3.3"
   }
 }
+```
+
+---
+
+# MongoDB Fundamentals
+
+MongoDB is a NoSQL database designed for scalability, flexibility, and simplicity. Unlike relational databases like PostgreSQL, MongoDB stores data in a schema-less, JSON-like format called **documents**. This guide explains the key concepts and how they compare to EF with PostgreSQL.
+
+---
+
+## Table of Contents
+1. [What is a Document?](#what-is-a-document)
+2. [Collections](#collections)
+3. [Embedded Documents vs References](#embedded-documents-vs-references)
+4. [Schema Design Principles](#schema-design-principles)
+5. [Relationships in MongoDB](#relationships-in-mongodb)
+6. [Transactions in MongoDB](#transactions-in-mongodb)
+7. [Indexes](#indexes)
+8. [Comparison: MongoDB vs EF with PostgreSQL](#comparison-mongodb-vs-ef-with-postgresql)
+
+## What is a Document?
+
+- A **document** is the fundamental unit of data in MongoDB.
+- Documents are stored in **collections** (similar to tables in relational databases).
+- MongoDB documents are JSON-like objects that support a flexible and dynamic schema.
+
+**Example Document:**
+```json
+{
+  "_id": "64c3d1a72f1e4a1b3d8e5678",
+  "name": "John Doe",
+  "age": 30,
+  "address": {
+    "street": "123 Main St",
+    "city": "Sample City",
+    "postalCode": "12345"
+  }
+}
+```
+
+## Collections
+
+- A collection is a group of documents, similar to a table in relational databases.
+- Collections do not enforce a schema, meaning documents in the same collection can have different structures.
+
+**Example Collection:**
+```json
+[
+  { "_id": "1", "name": "Alice", "age": 25 },
+  { "_id": "2", "name": "Bob", "city": "Sample City" }
+]
+```
+
+## Embedded Documents vs References
+### 1. Embedded Documents
+- Store related data inside the document.
+- Suitable for one-to-few relationships or tightly coupled data.
+- Benefits:
+  - Single document query for related data.
+  - Atomic operations on the document.
+  - Simpler schema and faster reads.
+
+**Example:**
+```json
+{
+  "_id": "1",
+  "name": "John Doe",
+  "address": {
+    "street": "123 Main St",
+    "city": "Sample City",
+    "postalCode": "12345"
+  }
+}
+```
+
+### 2. References (Normalized Data)
+- Store related data in separate documents and reference them using _id.
+- Suitable for one-to-many or many-to-many relationships, or when related data is large or frequently queried independently.
+- Benefits:
+  - Data normalization (avoids duplication).
+  - Flexibility for shared or independent updates.
+
+**Example: Parent Document:**
+```json
+{
+  "_id": "1",
+  "name": "John Doe",
+  "addresses": ["101", "102"]
+}
+```
+**Referenced Child Documents:**
+```json
+{
+  "_id": "101",
+  "street": "123 Main St",
+  "city": "Sample City",
+  "postalCode": "12345"
+}
+{
+  "_id": "102",
+  "street": "456 Work St",
+  "city": "Worktown",
+  "postalCode": "67890"
+}
+```
+
+## Schema Design Principles
+### 1. Embed When:
+
+- Data is tightly coupled (e.g., user profile and preferences).
+- The data is often queried together.
+- Data volume is small.
+
+### 2. Reference When:
+
+- Data is shared between entities.
+- Data grows large (e.g., a list of user orders).
+- Relationships are complex.
+
+### 3. Denormalization:
+- MongoDB often prefers denormalization (duplicating data) for performance, especially in read-heavy applications.
+
+### 4. Schema Flexibility:
+- MongoDB allows fields to be added or removed without altering the entire collection.
+
+
+## Relationships in MongoDB
+### 1. One-to-One
+- Use embedding or referencing.
+**Example:**
+```json
+{
+  "_id": "1",
+  "name": "John",
+  "profile": { "bio": "Software Developer", "twitter": "@johndoe" }
+}
+```
+
+### 2. One-to-Many
+- Use embedding for small related data.
+- Use referencing for larger datasets.
+
+### 3. Many-to-Many
+- Always use referencing.
+- **Example:**
+```json
+{
+  "_id": "1",
+  "name": "John",
+  "groups": ["101", "102"]
+}
+```
+
+## Transactions in MongoDB
+- MongoDB supports multi-document transactions in replica sets and sharded clusters.
+- Transactions ensure atomicity for operations across multiple documents or collections.
+- Similar to EF transactions.
+- **Example:**
+```js
+const session = await connection.startSession();
+session.startTransaction();
+
+try {
+  await collectionA.insertOne({ name: 'John' }, { session });
+  await collectionB.insertOne({ role: 'Admin' }, { session });
+  await session.commitTransaction();
+} catch (error) {
+  await session.abortTransaction();
+} finally {
+  session.endSession();
+}
+```
+
+## Indexes
+- MongoDB supports indexes for optimizing queries.
+- Common Index Types:
+  - Single Field Index: Improves queries on a single field.
+  - Compound Index: Improves queries on multiple fields.
+  - Text Index: For full-text search.
+- **Example:**
+```js
+db.collection.createIndex({ name: 1 }); // Ascending index on "name"
+db.collection.createIndex({ age: -1 }); // Descending index on "age"
+```
+
+## Comparison: MongoDB vs EF with PostgreSQL
+
+| **Feature**              | **MongoDB**                                              | **EF with PostgreSQL**                                   |
+|--------------------------|---------------------------------------------------------|---------------------------------------------------------|
+| **Data Model**           | Document-based (JSON-like, flexible schema).            | Relational (tables, rows, strict schema).               |
+| **Schema Changes**       | Dynamic; fields can be added/removed anytime.           | Requires migrations for schema changes.                 |
+| **Relationships**        | Embedded documents or references (manual).             | Relationships handled via foreign keys and navigation properties.  |
+| **Query Language**       | JSON-like queries using MongoDB's query API.            | SQL-based queries, LINQ, and strongly typed methods.    |
+| **Transactions**         | Supported (requires replica set or sharded cluster).    | Fully supported with built-in atomicity.                |
+| **Joins**                | Not natively supported; requires aggregation framework. | Fully supported with efficient joins via SQL.           |
+| **Performance**          | Optimized for fast, flexible queries with denormalized data. | Optimized for normalized data and complex joins.         |
+| **Indexes**              | Supports single-field, compound, and text indexes.      | Supports primary, unique, and composite indexes.        |
+| **Scaling**              | Horizontal scaling (sharding).                         | Vertical scaling (add resources to the server).         |
+| **ACID Compliance**      | Transactions provide ACID compliance across multiple documents (replica sets only). | Fully ACID compliant out-of-the-box.                    |
+| **Data Relationships**   | Flexible, managed manually via references or embedding. | Managed via foreign keys and relationships.             |
+| **Primary Use Cases**    | Flexible data models, hierarchical data, and high scalability. | Structured, normalized data with strict relationships.  |
+| **Ease of Use**          | Schema flexibility simplifies development.              | Strongly typed schemas with migrations simplify updates.|
+
