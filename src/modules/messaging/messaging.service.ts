@@ -2,7 +2,7 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { connect, Connection, Channel } from 'amqplib';
 import envConfig from 'src/config/env.config';
-import { LoggerService } from 'src/logger/logger.service';
+import { LoggerService } from '@app/utils/logger/logger.service';
 import { Order } from './order.interface';
 
 @Injectable()

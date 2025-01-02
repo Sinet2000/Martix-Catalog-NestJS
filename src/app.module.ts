@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import envConfig from './config/env.config';
 import { DatabaseModule } from '@database/database.module';
-import { LoggerService } from './logger/logger.service';
+import { LoggerService } from './utils/logger/logger.service';
 import { CountryModule } from '@modules/country/country.module';
 import { AddressModule } from '@modules/address/address.module';
 import { BootstrapModule } from './config/bootstrap.module';
@@ -13,6 +13,8 @@ import { ProductsModule } from './modules/products/products.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { SearchModule } from './modules/search/search.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
+import { FileManagementService } from './modules/file-management/file-management.service';
+import { FileManagementModule } from './modules/file-management/file-management.module';
 
 @Module({
   imports: [
@@ -29,8 +31,9 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
     CategoriesModule,
     SearchModule,
     NotificationsModule,
+    FileManagementModule,
     // MessagingModule,
   ],
-  providers: [LoggerService],
+  providers: [LoggerService, FileManagementService],
 })
 export class AppModule {}

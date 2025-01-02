@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
@@ -17,7 +18,9 @@ export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Get(':id')
-  async getById(@Param('id') id: string): Promise<Category> {
+  async getById(
+    @Param('id', new ParseIntPipe()) id: string,
+  ): Promise<Category> {
     return this.categoriesService.getById(id);
   }
 
