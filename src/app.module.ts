@@ -9,6 +9,10 @@ import { AddressModule } from '@modules/address/address.module';
 import { BootstrapModule } from './config/bootstrap.module';
 // import { MessagingModule } from './modules/messaging/messaging.module';
 import { PersonModule } from './modules/person/person.module';
+import { ProductsModule } from './modules/products/products.module';
+import { CategoriesModule } from './modules/categories/categories.module';
+import { SearchModule } from './modules/search/search.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 
 @Module({
   imports: [
@@ -21,6 +25,10 @@ import { PersonModule } from './modules/person/person.module';
     AddressModule,
     BootstrapModule,
     PersonModule,
+    ProductsModule,
+    CategoriesModule,
+    SearchModule,
+    NotificationsModule,
     // MessagingModule,
   ],
   providers: [LoggerService],

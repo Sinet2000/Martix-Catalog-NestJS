@@ -1,102 +1,60 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Product Catalog Service
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![Product Catalog Service](https://img.shields.io/badge/NestJS-Official-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 📦 Overview
 
-## Description
+The **Product Catalog Service** is a core component of the Unified E-Commerce Platform, built using **NestJS** and **MongoDB**. It manages all product-related data, including creation, retrieval, updating, and deletion of products and categories. This service provides robust APIs for the frontend and other microservices to interact with the product catalog efficiently and in real-time.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🚀 Features
 
-## Project setup
+- **CRUD Operations**: Create, Read, Update, and Delete products and categories.
+- **Advanced Search**: Full-text search with filtering and sorting using Elasticsearch.
+- **Real-Time Inventory Updates**: Push real-time stock level changes to clients via WebSockets.
+- **Image Management**: Upload and manage product images with cloud storage integration.
+- **Role-Based Access Control**: Secure endpoints with JWT authentication and role-based permissions.
+- **API Documentation**: Interactive Swagger documentation for easy API exploration.
 
+## 🛠️ Technologies
+
+- **Framework**: NestJS (TypeScript)
+- **Database**: MongoDB (via Mongoose)
+- **Search Engine**: Elasticsearch
+- **Real-Time Communication**: Socket.IO
+- **Cloud Storage**: AWS S3 or Azure Blob Storage
+- **Authentication**: JWT (JSON Web Tokens)
+- **API Documentation**: Swagger (`@nestjs/swagger`)
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes (Optional)
+
+## 📋 Getting Started
+
+### Prerequisites
+
+- **Node.js** (v14 or higher)
+- **npm** or **yarn**
+- **MongoDB** instance
+- **Elasticsearch** instance
+- **AWS S3** or **Azure Blob Storage** credentials (for image storage)
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/product-catalog-service.git
+   cd product-catalog-service
+   ```
+
+2. **Install dependencies:**
 ```bash
-$ yarn install
+npm install
+# or
+yarn install
 ```
 
-## Compile and run the project
-
-```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ yarn install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+--- 
 
 # Recommended Packages for a Production-Grade NestJS Application
 
@@ -518,4 +476,200 @@ db.collection.createIndex({ age: -1 }); // Descending index on "age"
 | **Data Relationships**   | Flexible, managed manually via references or embedding. | Managed via foreign keys and relationships.             |
 | **Primary Use Cases**    | Flexible data models, hierarchical data, and high scalability. | Structured, normalized data with strict relationships.  |
 | **Ease of Use**          | Schema flexibility simplifies development.              | Strongly typed schemas with migrations simplify updates.|
+
+---
+
+## MongoDB Query Operators
+
+MongoDB provides a set of **query operators** to filter documents in collections based on specific conditions. These operators allow you to perform comparisons, logical operations, and more.
+
+
+### Comparison Operators
+
+Comparison operators are used to compare values in documents.
+
+| Operator | Description                          | Example Usage                                                                 |
+|----------|--------------------------------------|-------------------------------------------------------------------------------|
+| `$eq`    | Matches values that are equal to.   | `{ "field": { "$eq": value } }`                                              |
+| `$ne`    | Matches values that are not equal.  | `{ "field": { "$ne": value } }`                                              |
+| `$gt`    | Matches values greater than.        | `{ "field": { "$gt": value } }`                                              |
+| `$gte`   | Matches values greater or equal.    | `{ "field": { "$gte": value } }`                                             |
+| `$lt`    | Matches values less than.           | `{ "field": { "$lt": value } }`                                              |
+| `$lte`   | Matches values less or equal.       | `{ "field": { "$lte": value } }`                                             |
+| `$in`    | Matches any value in an array.      | `{ "field": { "$in": [value1, value2] } }`                                   |
+| `$nin`   | Matches values not in an array.     | `{ "field": { "$nin": [value1, value2] } }`                                  |
+
+
+### Logical Operators
+
+Logical operators combine multiple query conditions.
+
+| Operator | Description                             | Example Usage                                                                 |
+|----------|-----------------------------------------|-------------------------------------------------------------------------------|
+| `$and`   | Joins query clauses with AND logic.     | `{ "$and": [ { "field1": condition }, { "field2": condition } ] }`           |
+| `$or`    | Joins query clauses with OR logic.      | `{ "$or": [ { "field1": condition }, { "field2": condition } ] }`            |
+| `$not`   | Inverts the effect of a query.          | `{ "field": { "$not": { "$gt": value } } }`                                  |
+| `$nor`   | Joins query clauses with NOR logic.     | `{ "$nor": [ { "field1": condition }, { "field2": condition } ] }`           |
+
+
+### Element Operators
+
+Element operators are used to query based on the presence or type of a field.
+
+| Operator | Description                                | Example Usage                                                                 |
+|----------|--------------------------------------------|-------------------------------------------------------------------------------|
+| `$exists`| Matches documents with a specific field.   | `{ "field": { "$exists": true } }`                                           |
+| `$type`  | Matches fields of a specific BSON type.    | `{ "field": { "$type": "string" } }`                                         |
+
+---
+
+### Array Operators
+
+Array operators are used to query array fields.
+
+| Operator     | Description                                | Example Usage                                                                 |
+|--------------|--------------------------------------------|-------------------------------------------------------------------------------|
+| `$all`       | Matches arrays with all values specified. | `{ "field": { "$all": [value1, value2] } }`                                  |
+| `$elemMatch` | Matches documents with at least one array element that satisfies a condition. | `{ "field": { "$elemMatch": { "$gt": 5, "$lt": 10 } } }` |
+| `$size`      | Matches arrays of a specific size.         | `{ "field": { "$size": 3 } }`                                                |
+
+---
+
+### Evaluation Operators
+
+Evaluation operators are used for advanced queries, such as regex or JavaScript.
+
+| Operator   | Description                             | Example Usage                                                                 |
+|------------|-----------------------------------------|-------------------------------------------------------------------------------|
+| `$regex`   | Matches fields with regular expressions.| `{ "field": { "$regex": "^value" } }`                                        |
+| `$expr`    | Allows conditional logic in queries.    | `{ "$expr": { "$gt": [ "$field1", "$field2" ] } }`                          |
+
+---
+
+---
+# E-Commerce Shop Infrastructure
+
+This document outlines the infrastructure for building a scalable e-commerce shop using **NestJS** (backend) and **ReactJS** (frontend). It starts with a small shop and is designed to scale seamlessly for larger operations.
+
+---
+
+## Overview
+
+- **Frontend**: ReactJS (TypeScript preferred for scalability)
+- **Backend**: NestJS (modular, scalable framework)
+- **Database**: PostgreSQL initially, scalable to distributed databases
+- **Authentication**: JWT and OAuth
+- **Hosting**: Cloud services (AWS, GCP, Azure)
+
+---
+
+## Technologies
+
+### Frontend
+- **Framework**: ReactJS
+- **State Management**: Redux Toolkit or React Query
+- **UI Library**: Material-UI or TailwindCSS
+- **Routing**: React Router
+- **Testing**: Jest + React Testing Library
+
+### Backend
+- **Framework**: NestJS
+- **ORM**: TypeORM or Prisma
+- **Authentication**: Passport.js (JWT, OAuth strategies)
+- **Task Scheduling**: Bull (Redis-backed queues)
+- **File Uploads**: Multer or cloud storage (AWS S3)
+- **Caching**: Redis
+
+### Database
+- **Primary DB**: PostgreSQL
+- **Search**: ElasticSearch (for catalog search)
+- **NoSQL (Optional)**: MongoDB (analytics, logs)
+
+### DevOps & Hosting
+- **CI/CD**: GitHub Actions, GitLab CI, or Jenkins
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes
+- **Monitoring**: Prometheus + Grafana
+- **Error Tracking**: Sentry
+
+---
+
+## Architecture
+
+### Frontend
+- **Service Layer**: Axios or Fetch API for HTTP requests
+- **Component Library**: Reusable components for scalability
+- **SEO**: Consider Next.js for server-side rendering (SSR)
+
+### Backend
+- **Modular Structure**:
+  - Modules: `Users`, `Orders`, `Products`, `Payments`
+  - Services: Business logic
+  - Controllers: Handle HTTP requests
+  - Entities: Define database models
+- **API**: REST and/or GraphQL (using Apollo Server)
+
+### Database Design
+- **Core Tables**:
+  - `Users`: Stores user information
+  - `Products`: Manages inventory and pricing
+  - `Orders`: Tracks order details
+  - `Payments`: Logs transactions
+  - `Categories`: Product categorization
+  - `Reviews`: User feedback
+- **Scaling**: Sharding and read replicas for PostgreSQL
+
+---
+
+## Features
+
+### Authentication
+- **JWT**: Stateless authentication
+- **OAuth2**: Support for Google, Facebook logins
+- **Multi-Tenancy**: Separate stores for different sellers
+
+### Payments
+- Integrate with **Stripe**, **PayPal**, or **Adyen**
+- Store transaction logs in a NoSQL database for analytics
+
+### Search & Recommendations
+- **ElasticSearch**: Full-text search and filtering
+- **Recommendation Engine**: ML-powered recommendations
+
+### Scalability & Performance
+- **Load Balancer**: Nginx or AWS Elastic Load Balancer
+- **CDN**: Cloudflare or AWS CloudFront for caching
+- **Queue Management**: Bull or RabbitMQ for async tasks
+
+---
+
+## Deployment
+
+### Small-Scale Deployment
+- **Frontend**: Deploy via **Vercel**
+- **Backend**: Host on **Heroku**
+- **Database**: Use **AWS RDS** or similar managed services
+
+### Scaling Up
+- **Backend**: Migrate to Kubernetes on AWS/GCP/Azure
+- **Database**: Add read replicas and migrate to distributed DBs like CockroachDB
+- **Frontend**: Optimize with Webpack and code splitting
+
+---
+
+## Monitoring & Maintenance
+- **Logs**: Elastic Stack (ELK)
+- **Metrics**: Prometheus + Grafana
+- **Error Tracking**: Sentry
+- **Incident Management**: PagerDuty or OpsGenie
+
+---
+
+## Future Considerations
+- **Multilingual Support**: Use `i18next` for translations
+- **Mobile App**: Build with React Native
+- **Microservices**: Split into independent services (users, payments, orders)
+- **Real-Time Features**: Add WebSocket or push notification support
+
+---
 
